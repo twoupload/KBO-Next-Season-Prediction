@@ -1,0 +1,16 @@
+﻿type,cohort,lag,model,parameters,MAE,RMSE,R2
+batter,native,1,ridge,"{""alpha"": 0.1}",15.90156883865557,21.009975252038856,0.3149426297199488
+batter,native,1,ridge,"{""alpha"": 1.0}",15.958108054053621,21.101869849160973,0.30893684017373935
+batter,native,1,ridge,"{""alpha"": 10.0}",16.270284849058562,21.5572704448889,0.27878724016956924
+batter,native,1,ridge,"{""alpha"": 100.0}",16.897813703023544,22.28376620084943,0.22935733722473994
+batter,native,1,ridge,"{""alpha"": 1000.0}",17.42387880186089,22.954860396174155,0.18224130008371342
+batter,native,1,ridge,"{""alpha"": 3000.0}",17.50835309181826,23.07918382732033,0.17335935712932427
+batter,native,1,ridge,"{""alpha"": 10000.0}",18.006383890808166,23.5190440711248,0.14154962784466163
+batter,native,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",17.019683825121643,22.198062462055766,0.2352737472270835
+batter,native,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",17.06094561471213,22.26018864626996,0.23098724635913215
+batter,native,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",17.926633819778463,22.419398351137357,0.219947615578718
+batter,native,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",17.781677276831076,22.57178412343741,0.2093074670746481
+batter,native,1,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",17.641204887027573,22.61937591175598,0.20596965889001306
+batter,native,1,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",17.72527506375217,22.478047765705952,0.21586102451744948
+batter,native,1,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",17.85397662455162,22.6697069297407,0.20243208840637428
+batter,native,1,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",18.252782190856987,22.911490166210733,0.1853284788070314

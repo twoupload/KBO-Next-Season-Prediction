@@ -1,0 +1,2 @@
+﻿type,cohort,lag,variant,split,model,n,n_features,MAE,RMSE,R2
+pitcher,native,1,no_gs_rate,validation,ridge,90,17,0.7765451008130589,1.0179958517685137,-0.1799044657685067

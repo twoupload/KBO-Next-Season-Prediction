@@ -1,0 +1,16 @@
+﻿type,cohort,lag,model,parameters,MAE,RMSE,R2
+batter,native,3,ridge,"{""alpha"": 0.1}",15.279545440756976,19.52584412386238,0.3305288700227368
+batter,native,3,ridge,"{""alpha"": 1.0}",14.941995833768729,19.312854532321026,0.3450545097367975
+batter,native,3,ridge,"{""alpha"": 10.0}",14.947595102154121,19.69007759856173,0.31921955436836924
+batter,native,3,ridge,"{""alpha"": 100.0}",15.635984413512187,20.553812669428805,0.25818261791702857
+batter,native,3,ridge,"{""alpha"": 1000.0}",16.14607935871855,20.902728375757093,0.23278308088920907
+batter,native,3,ridge,"{""alpha"": 3000.0}",16.055103859032947,20.898535518856832,0.23309084053331597
+batter,native,3,ridge,"{""alpha"": 10000.0}",16.420839660497826,21.393487161463714,0.1963344003584072
+batter,native,3,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",16.104703903693228,21.00977315308392,0.22490498463323239
+batter,native,3,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",16.12317191790047,21.000276911405656,0.22560549920767015
+batter,native,3,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",16.22649838894428,21.106975755297796,0.21771637420430812
+batter,native,3,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",16.236782289765383,21.072144312407822,0.22029614545260134
+batter,native,3,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.08059343223389,21.184837696089236,0.211934165674045
+batter,native,3,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.568926869755938,21.578433202544257,0.18237900903762716
+batter,native,3,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.335874952251505,21.405950342699434,0.19539774636479645
+batter,native,3,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.627178708748538,21.97961310898709,0.15169445734799314

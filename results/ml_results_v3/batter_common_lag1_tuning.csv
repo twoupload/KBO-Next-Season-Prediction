@@ -1,0 +1,16 @@
+﻿type,cohort,lag,model,parameters,MAE,RMSE,R2
+batter,common,1,ridge,"{""alpha"": 0.1}",14.166379716709107,18.48946808592501,0.39971007817923676
+batter,common,1,ridge,"{""alpha"": 1.0}",14.367031488011998,18.643568267341195,0.3896621660093743
+batter,common,1,ridge,"{""alpha"": 10.0}",14.545191098822585,18.946579580014347,0.3696614706881687
+batter,common,1,ridge,"{""alpha"": 100.0}",14.38568570581775,19.202984935347487,0.35248519928105804
+batter,common,1,ridge,"{""alpha"": 1000.0}",14.850321564725634,19.9502888624404,0.3011071556374326
+batter,common,1,ridge,"{""alpha"": 3000.0}",15.594570745350916,20.656465954612656,0.2507542976331426
+batter,common,1,ridge,"{""alpha"": 10000.0}",16.863922151992966,21.98992556612076,0.1508982498138528
+batter,common,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",16.016684176559625,20.722539409514457,0.24595343498790634
+batter,common,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",15.962315281099533,20.713097045125856,0.24664045120326628
+batter,common,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",16.80500988333472,21.293348201918356,0.20384041230379335
+batter,common,1,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",16.595176149058595,21.26146838896984,0.20622260399227632
+batter,common,1,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",14.662852466232973,19.393778227113014,0.3395543751983795
+batter,common,1,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",15.15429759074891,19.44987675052524,0.3357280336327446
+batter,common,1,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",15.108128739172347,19.594243969057533,0.3258302842390808
+batter,common,1,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",15.73548164254102,19.963174403736634,0.3002040588498799

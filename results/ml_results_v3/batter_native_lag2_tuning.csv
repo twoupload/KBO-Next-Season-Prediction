@@ -1,0 +1,16 @@
+﻿type,cohort,lag,model,parameters,MAE,RMSE,R2
+batter,native,2,ridge,"{""alpha"": 0.1}",16.155794305178944,21.874794363966938,0.31070878338658925
+batter,native,2,ridge,"{""alpha"": 1.0}",16.301882440669385,22.04657043444415,0.2998406921219684
+batter,native,2,ridge,"{""alpha"": 10.0}",16.64449132788844,22.373605687568507,0.27891452772254766
+batter,native,2,ridge,"{""alpha"": 100.0}",16.95588755977446,22.737131494844842,0.25529180468850543
+batter,native,2,ridge,"{""alpha"": 1000.0}",17.53530109901037,23.323905568847177,0.21635866617063537
+batter,native,2,ridge,"{""alpha"": 3000.0}",17.56910693056276,23.491115203880444,0.20508250419412055
+batter,native,2,ridge,"{""alpha"": 10000.0}",18.12235696607617,24.024980704489984,0.16854091815555328
+batter,native,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",17.430318340365115,23.38392642465927,0.2123202908492764
+batter,native,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",17.514267724353076,23.52542134562026,0.20275903297201892
+batter,native,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",17.863141723698888,23.287426599827878,0.2188080049432296
+batter,native,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",17.986403640716162,23.502310198832685,0.20432466721909848
+batter,native,2,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",17.753250291630433,23.452273991229834,0.2077090320317735
+batter,native,2,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",17.94399986367824,23.453821099935343,0.20760449626820443
+batter,native,2,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",18.006074399301045,23.76603714937604,0.18636742182052268
+batter,native,2,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",18.179244762292697,23.685613699313055,0.1918647139002585

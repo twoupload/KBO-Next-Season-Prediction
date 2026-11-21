@@ -1,0 +1,54 @@
+{
+  "type": "batter",
+  "input_file": "C:\\Users\\LEE\\Desktop\\KBO_Prediction\\kbo_linked_2015_2025\\batter_lag1_qualified.csv",
+  "target": "Target_wRC+",
+  "baseline": "wRC+_lag1",
+  "features": [
+    "Age_lag1",
+    "PA_lag1",
+    "G_lag1",
+    "AB_lag1",
+    "H_lag1",
+    "HR_lag1",
+    "BB_lag1",
+    "SO_lag1",
+    "BB%_lag1",
+    "K%_lag1",
+    "AVG_lag1",
+    "OBP_lag1",
+    "SLG_lag1",
+    "OPS_lag1",
+    "ISO_lag1",
+    "BABIP_lag1",
+    "wOBA_lag1",
+    "wRC+_lag1"
+  ],
+  "train_end_year": 2023,
+  "validation_year": 2024,
+  "test_year": 2025,
+  "train_count": 865,
+  "validation_count": 104,
+  "test_count": 106,
+  "random_state": 42,
+  "chosen_hyperparameters": {
+    "ridge": {
+      "alpha": 0.1
+    },
+    "random_forest": {
+      "n_estimators": 250,
+      "max_depth": 4,
+      "min_samples_leaf": 2
+    },
+    "xgboost": {
+      "n_estimators": 150,
+      "max_depth": 2,
+      "learning_rate": 0.03,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_lambda": 5.0
+    }
+  },
+  "model_selection": "2024 validation MAE only",
+  "final_fit": "train through 2024 after parameter selection",
+  "caution": "qualified dataset filters on target-year playing time; conditional prediction"
+}

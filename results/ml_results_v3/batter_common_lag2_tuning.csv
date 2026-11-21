@@ -1,0 +1,16 @@
+﻿type,cohort,lag,model,parameters,MAE,RMSE,R2
+batter,common,2,ridge,"{""alpha"": 0.1}",15.162443547347106,19.828663365252616,0.3096026799231497
+batter,common,2,ridge,"{""alpha"": 1.0}",15.300234734826702,19.999609986001087,0.29764727701841565
+batter,common,2,ridge,"{""alpha"": 10.0}",15.410680171244417,20.2114086973602,0.28269247712367573
+batter,common,2,ridge,"{""alpha"": 100.0}",15.476431403088167,20.613151351766238,0.25389319413320577
+batter,common,2,ridge,"{""alpha"": 1000.0}",15.92674196249034,21.15818472327742,0.21391587397328227
+batter,common,2,ridge,"{""alpha"": 3000.0}",16.0365819564333,21.215064161873556,0.20968374121572575
+batter,common,2,ridge,"{""alpha"": 10000.0}",16.701674784505165,21.80379655933974,0.16521149582058026
+batter,common,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",16.160770944897163,21.23389149271913,0.208280384808471
+batter,common,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",16.087804673924502,21.184904587866384,0.2119291889819267
+batter,common,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",16.389962395685938,21.19747281114528,0.21099384486430028
+batter,common,2,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",16.305384822176535,21.202358136106966,0.21063012267222148
+batter,common,2,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.149742928145947,21.253754785223126,0.20679846013738357
+batter,common,2,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.085180659009538,21.05941170745861,0.2212381152561187
+batter,common,2,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.313518333886346,21.35601260732891,0.19914746511063464
+batter,common,2,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",16.290898549090205,21.012731516676443,0.22468668867203012

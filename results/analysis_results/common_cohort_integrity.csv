@@ -1,0 +1,5 @@
+﻿type,split,n,same_player_season,same_actual
+batter,validation,68,True,True
+batter,test,67,True,True
+pitcher,validation,47,True,True
+pitcher,test,39,True,True

@@ -1,0 +1,13 @@
+﻿type,cohort,lag,train_n,validation_n,test_n
+batter,native,1,865,104,106
+batter,native,2,586,85,84
+batter,native,3,412,68,67
+batter,common,1,412,68,67
+batter,common,2,412,68,67
+batter,common,3,412,68,67
+pitcher,native,1,710,90,86
+pitcher,native,2,420,61,57
+pitcher,native,3,243,47,39
+pitcher,common,1,243,47,39
+pitcher,common,2,243,47,39
+pitcher,common,3,243,47,39
