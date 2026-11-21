@@ -1,0 +1,3 @@
+﻿kind,selected_from,candidate,prior,age_adjustment,validation_MAE
+batter,2024 validation only,"P=2400, age=on",2400.0,on,15.973292431845401
+pitcher,2024 validation only,"P=2160, age=on",2160.0,on,1.0129533216293602

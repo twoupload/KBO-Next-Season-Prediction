@@ -1,0 +1,11 @@
+﻿2025_순위,PlayerId,선수명_한글,Name,actual_2025_FIP,predicted_2026_FIP,2026_평가용_실제,2026_평가용_절대오차,2026_status,2026_평가가능
+1,17920,폰세,Cody Ponce 폰세,2.154371,3.536228,,,not_in_2026_file,False
+2,sa3018038,홍민기,Min Ki Hong 홍민기,2.225288,4.029552,,,below_2026_threshold,False
+3,15130,앤더슨,Drew Anderson 앤더슨,2.622679,3.65137,,,not_in_2026_file,False
+4,sa3013166,백정현,Jung-hyun Baek 백정현,2.763626,4.070459,,,below_2026_threshold,False
+5,sa3018231,문동주,Dong Ju Moon 문동주,2.807675,4.052814,,,below_2026_threshold,False
+6,sa3018029,조병현,Byeong Hyeon Jo 조병현,2.864831,3.915934,3.8735393801507367,0.0423946198492632,qualified_2026,True
+7,sa3014303,소형준,Hyeong Jun So 소형준,2.955351,4.222769,3.615314109456448,0.6074548905435524,qualified_2026,True
+8,sa3014352,정해영,Hai Young Jung 정해영,2.973768,4.232508,4.7572432220459255,0.5247352220459254,qualified_2026,True
+9,20132,올러,Adam Oller 올러,2.980951,4.029947,3.757018322891064,0.2729286771089358,qualified_2026,True
+10,16401,치리노스,Yonny Chirinos 치리노스,3.025959,4.22371,5.062391669029661,0.8386816690296612,qualified_2026,True

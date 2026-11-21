@@ -1,0 +1,6 @@
+﻿2025_순위,PlayerId,선수명_한글,Name,actual_2025_FIP,predicted_2026_FIP,2026_평가용_실제,2026_평가용_절대오차,2026_status,2026_평가가능
+1,17920,폰세,Cody Ponce 폰세,2.154371,3.536228,,,not_in_2026_file,False
+2,sa3018038,홍민기,Min Ki Hong 홍민기,2.225288,4.029552,,,below_2026_threshold,False
+3,15130,앤더슨,Drew Anderson 앤더슨,2.622679,3.65137,,,not_in_2026_file,False
+4,sa3013166,백정현,Jung-hyun Baek 백정현,2.763626,4.070459,,,below_2026_threshold,False
+5,sa3018231,문동주,Dong Ju Moon 문동주,2.807675,4.052814,,,below_2026_threshold,False

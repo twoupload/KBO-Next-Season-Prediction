@@ -1,0 +1,56 @@
+{
+  "type": "pitcher",
+  "cohort": "native",
+  "lag": 1,
+  "variant": "all",
+  "source": "C:\\Users\\LEE\\Desktop\\KBO_Prediction\\kbo_linked_2015_2025\\pitcher_lag1_qualified.csv",
+  "features": [
+    "Age_lag1",
+    "IP_outs_lag1",
+    "G_lag1",
+    "GS_lag1",
+    "GS_rate_lag1",
+    "ERA_lag1",
+    "FIP_lag1",
+    "SO_lag1",
+    "BB_lag1",
+    "HR_lag1",
+    "K%_lag1",
+    "BB%_lag1",
+    "K-BB%_lag1",
+    "K/9_lag1",
+    "BB/9_lag1",
+    "HR/9_lag1",
+    "WHIP_lag1",
+    "BABIP_lag1"
+  ],
+  "removed_features": [],
+  "train_n": 710,
+  "validation_n": 90,
+  "test_n": 86,
+  "train_end_year": 2023,
+  "validation_year": 2024,
+  "test_year": 2025,
+  "seed": 42,
+  "chosen_hyperparameters": {
+    "ridge": {
+      "alpha": 1000.0
+    },
+    "random_forest": {
+      "n_estimators": 200,
+      "max_depth": 4,
+      "min_samples_leaf": 2
+    },
+    "xgboost": {
+      "n_estimators": 150,
+      "max_depth": 2,
+      "learning_rate": 0.05,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "reg_lambda": 5.0
+    }
+  },
+  "selection": "2024 validation MAE only",
+  "final_fit": "2016-2024 train+validation after tuning",
+  "warning": "qualified data conditions on future playing time; results are conditional"
+}

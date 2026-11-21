@@ -1,0 +1,3 @@
+﻿type,train_rows,predicted_players,ridge_alpha,train_source,prediction_source,selection,2026_actuals_used
+batter,1075,155,0.1,kbo_linked_2015_2025\batter_lag1_qualified.csv,data\kbo_batter_2015_2025_active.csv,2025 season playing time only,False
+pitcher,886,138,1000.0,kbo_linked_2015_2025\pitcher_lag1_qualified.csv,data\kbo_pitcher_2015_2025_active.csv,2025 season playing time only,False

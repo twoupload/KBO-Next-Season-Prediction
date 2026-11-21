@@ -1,0 +1,70 @@
+{
+  "purpose": "2026 next-season forecast; 2026 actual statistics never loaded",
+  "model": "Ridge, fixed v2 2024 validation settings",
+  "training_labels_through": 2025,
+  "forecast_inputs_from": 2025,
+  "population": "players qualified in 2025; 2026 qualification unknown",
+  "limitation": "training labels come from historical target-year-qualified sample; distribution may differ from all 2025-qualified players",
+  "details": [
+    {
+      "type": "batter",
+      "train_rows": 1075,
+      "predicted_players": 155,
+      "features": [
+        "Age_lag1",
+        "PA_lag1",
+        "G_lag1",
+        "AB_lag1",
+        "H_lag1",
+        "HR_lag1",
+        "BB_lag1",
+        "SO_lag1",
+        "BB%_lag1",
+        "K%_lag1",
+        "AVG_lag1",
+        "OBP_lag1",
+        "SLG_lag1",
+        "OPS_lag1",
+        "ISO_lag1",
+        "BABIP_lag1",
+        "wOBA_lag1",
+        "wRC+_lag1"
+      ],
+      "ridge_alpha": 0.1,
+      "train_source": "kbo_linked_2015_2025\\batter_lag1_qualified.csv",
+      "prediction_source": "data\\kbo_batter_2015_2025_active.csv",
+      "selection": "2025 season playing time only",
+      "2026_actuals_used": false
+    },
+    {
+      "type": "pitcher",
+      "train_rows": 886,
+      "predicted_players": 138,
+      "features": [
+        "Age_lag1",
+        "IP_outs_lag1",
+        "G_lag1",
+        "GS_lag1",
+        "GS_rate_lag1",
+        "ERA_lag1",
+        "FIP_lag1",
+        "SO_lag1",
+        "BB_lag1",
+        "HR_lag1",
+        "K%_lag1",
+        "BB%_lag1",
+        "K-BB%_lag1",
+        "K/9_lag1",
+        "BB/9_lag1",
+        "HR/9_lag1",
+        "WHIP_lag1",
+        "BABIP_lag1"
+      ],
+      "ridge_alpha": 1000.0,
+      "train_source": "kbo_linked_2015_2025\\pitcher_lag1_qualified.csv",
+      "prediction_source": "data\\kbo_pitcher_2015_2025_active.csv",
+      "selection": "2025 season playing time only",
+      "2026_actuals_used": false
+    }
+  ]
+}

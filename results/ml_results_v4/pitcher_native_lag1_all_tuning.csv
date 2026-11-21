@@ -1,0 +1,16 @@
+﻿cohort,lag,variant,model,parameters,MAE,RMSE,R2
+native,1,all,ridge,"{""alpha"": 0.1}",0.8467680533158302,1.0992532737312521,-0.3757843460339829
+native,1,all,ridge,"{""alpha"": 1.0}",0.8438526422024067,1.0958882768918548,-0.36737422939008324
+native,1,all,ridge,"{""alpha"": 10.0}",0.8220036080125993,1.0726045564275015,-0.3098878183143903
+native,1,all,ridge,"{""alpha"": 100.0}",0.7843673717002564,1.0325488626637818,-0.21388083180435702
+native,1,all,ridge,"{""alpha"": 1000.0}",0.7766332574149405,1.0182656388391547,-0.18052994012488477
+native,1,all,ridge,"{""alpha"": 3000.0}",0.7798405903674803,1.0188056189225079,-0.1817823278171249
+native,1,all,ridge,"{""alpha"": 10000.0}",0.7879216655540152,1.0281178185383095,-0.20348477479925853
+native,1,all,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",0.7981321472951852,1.0628223672650141,-0.28610432746466663
+native,1,all,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",0.7983169061257409,1.0650663043833113,-0.2915407651373625
+native,1,all,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",0.8215946345346228,1.0822632239030745,-0.3335847802268077
+native,1,all,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",0.8141432303727603,1.0813306950625976,-0.33128761172558985
+native,1,all,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.7930499725778112,1.0556320130288501,-0.2687613271863676
+native,1,all,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8260951311072808,1.0802360040982013,-0.3285935037179275
+native,1,all,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8144841247541791,1.0750077315979611,-0.31576401246750296
+native,1,all,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8588833540943851,1.1096268527376805,-0.4018732356374708

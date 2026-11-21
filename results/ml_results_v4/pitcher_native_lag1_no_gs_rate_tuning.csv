@@ -1,0 +1,16 @@
+﻿cohort,lag,variant,model,parameters,MAE,RMSE,R2
+native,1,no_gs_rate,ridge,"{""alpha"": 0.1}",0.8453719379385783,1.0957270435085045,-0.3669719070734405
+native,1,no_gs_rate,ridge,"{""alpha"": 1.0}",0.8425189314169693,1.0924668894373573,-0.35884961200367194
+native,1,no_gs_rate,ridge,"{""alpha"": 10.0}",0.8211425045674656,1.0701587265707837,-0.3039208289127566
+native,1,no_gs_rate,ridge,"{""alpha"": 100.0}",0.7840258753166103,1.0314490701453418,-0.2112963418571474
+native,1,no_gs_rate,ridge,"{""alpha"": 1000.0}",0.7765451008130589,1.0179958517685137,-0.17990446576850672
+native,1,no_gs_rate,ridge,"{""alpha"": 3000.0}",0.7798391177094532,1.0187547820687894,-0.1816643924714465
+native,1,no_gs_rate,ridge,"{""alpha"": 10000.0}",0.7879741289162941,1.0281309686115665,-0.2035155611816697
+native,1,no_gs_rate,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 2}",0.7977199309427383,1.062369151847674,-0.2850077038908918
+native,1,no_gs_rate,random_forest,"{""n_estimators"": 200, ""max_depth"": 4, ""min_samples_leaf"": 5}",0.7978657051225159,1.0647313674281473,-0.2907285777440014
+native,1,no_gs_rate,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 2}",0.8176946222805966,1.0790103928146513,-0.3255804298250611
+native,1,no_gs_rate,random_forest,"{""n_estimators"": 200, ""max_depth"": 8, ""min_samples_leaf"": 5}",0.8149502031046255,1.0816625157122142,-0.33210478356837614
+native,1,no_gs_rate,xgboost,"{""n_estimators"": 150, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.7964182116630638,1.061848095692251,-0.2837475073308655
+native,1,no_gs_rate,xgboost,"{""n_estimators"": 150, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8354113576882922,1.0972221205485906,-0.3707048123053054
+native,1,no_gs_rate,xgboost,"{""n_estimators"": 300, ""max_depth"": 2, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8142118309294214,1.0752346571227476,-0.31631956559371255
+native,1,no_gs_rate,xgboost,"{""n_estimators"": 300, ""max_depth"": 3, ""learning_rate"": 0.05, ""subsample"": 0.9, ""colsample_bytree"": 0.9, ""reg_lambda"": 5.0}",0.8737922344816882,1.1311963874693893,-0.4569037035458976
