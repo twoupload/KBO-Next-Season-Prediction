@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>기록 합치기 b+a</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow work column — drop zone, per-season scorecards, preview table */
+:root{
+  --bg:#f6f8f6; --surface:#ffffff; --ink:#17221c; --muted:#5b6a61; --line:#d6ded8;
+  --field:#1d5a3c; --field-soft:#e3efe7; --clay:#a8522a; --clay-soft:#f7e8df;
+  --sans:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101612; --surface:#18201b; --ink:#e6ede8; --muted:#97a69d; --line:#2c3831;
+  --field:#6cc394; --field-soft:#1d3327; --clay:#e59a72; --clay-soft:#3a2419; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101612; --surface:#18201b; --ink:#e6ede8; --muted:#97a69d; --line:#2c3831;
+  --field:#6cc394; --field-soft:#1d3327; --clay:#e59a72; --clay-soft:#3a2419; color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:960px;margin:0 auto;padding-block:32px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+h1{font-size:1.75rem;line-height:1.25;margin:0;text-wrap:balance;font-weight:700}
+h2{font-size:1.05rem;margin:0;font-weight:700}
+.lead{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.lead code,.mono{font-family:var(--mono);font-size:.9em}
+.drop{border:2px dashed var(--line);border-radius:10px;background:var(--surface);padding:28px 20px;
+  display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;transition:border-color .15s,background .15s}
+.drop.over{border-color:var(--field);background:var(--field-soft)}
+.drop p{margin:0;color:var(--muted)}
+.btn{font:inherit;font-weight:500;border-radius:6px;padding:8px 16px;cursor:pointer;border:1px solid var(--field);
+  background:var(--field);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--field)}
+.btn:focus-visible,.drop:focus-within{outline:3px solid var(--field);outline-offset:2px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.opt{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:.92rem}
+.seasons{display:flex;flex-direction:column;gap:14px}
+.season{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+  display:flex;flex-direction:column;gap:12px}
+.season-head{display:flex;flex-wrap:wrap;gap:12px;align-items:baseline;justify-content:space-between}
+.year{font-family:var(--mono);font-size:1.6rem;font-weight:500;letter-spacing:.02em}
+.slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.slot{border:1px solid var(--line);border-radius:6px;padding:8px 12px;min-width:0}
+.slot .tag{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.slot .fn{font-family:var(--mono);font-size:.85rem;overflow-wrap:anywhere}
+.slot.missing{border-style:dashed;color:var(--clay)}
+.stats{display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:.82rem;padding:2px 10px;border-radius:99px;background:var(--field-soft);color:var(--field);font-variant-numeric:tabular-nums}
+.pill.warn{background:var(--clay-soft);color:var(--clay)}
+.note{font-size:.85rem;color:var(--clay);margin:0;overflow-wrap:anywhere}
+.table-box{overflow-x:auto;border:1px solid var(--line);border-radius:6px;max-height:360px}
+table{border-collapse:collapse;font-family:var(--mono);font-size:.78rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+th,td{padding:4px 10px;border-bottom:1px solid var(--line);text-align:right}
+th{position:sticky;top:0;background:var(--surface);font-weight:500}
+th.from-a{color:var(--field)}
+td:first-child,th:first-child{text-align:left}
+.legend{font-size:.82rem;color:var(--muted)}
+.legend b{color:var(--field);font-weight:500}
+.empty{color:var(--muted);text-align:center;padding:12px}
+.toast{min-height:1.4em;font-size:.9rem;color:var(--field)}
+.toast.err{color:var(--clay)}
+@media (max-width:480px){.slots{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>기록 합치기: 일반기록(b) + 세부기록(a)</h1>
+    <p class="lead">연도별 <code>____b.csv</code>(일반)와 <code>____a.csv</code>(세부)를 올리면 PlayerId로 같은 선수를 이어 붙여 <code>____total.csv</code>를 만듭니다. 열 순서는 b의 기록이 먼저, a에만 있는 세이버 기록이 뒤에 옵니다. 여러 연도 파일을 한꺼번에 올려도 됩니다.</p>
+  </header>
+
+  <label class="drop" id="drop" for="file-input">
+    <p><strong>CSV 파일을 여기로 끌어다 놓으세요</strong></p>
+    <p>파일 이름의 연도(예: 2026)와 a/b로 자동 분류합니다</p>
+    <span class="btn">파일 선택</span>
+    <input id="file-input" type="file" accept=".csv,text/csv" multiple hidden>
+  </label>
+
+  <div class="row">
+    <label class="opt"><input type="checkbox" id="opt-year"> 맨 앞에 Year 열 추가</label>
+    <button class="btn ghost" id="clear-btn" type="button">모두 비우기</button>
+    <span class="toast" id="toast" role="status"></span>
+  </div>
+
+  <section class="seasons" id="seasons" aria-live="polite"></section>
+</div>
+
+<script type="text/plain" id="sample-a"></script>
+<script type="text/plain" id="sample-b"></script>
+<script>
+/* ---------- CSV core (pure functions) ---------- */
+function parseCSV(text){
+  text=text.replace(/^﻿/,'');
+  const rows=[];let row=[],f='',q=false;
+  for(let i=0;i<text.length;i++){
+    const c=text[i];
+    if(q){
+      if(c==='"'){ if(text[i+1]==='"'){f+='"';i++;} else q=false; }
+      else f+=c;
+    }else if(c==='"') q=true;
+    else if(c===','){row.push(f);f='';}
+    else if(c==='\n'||c==='\r'){
+      if(c==='\r'&&text[i+1]==='\n') i++;
+      row.push(f);f='';
+      if(row.length>1||row[0]!=='') rows.push(row);
+      row=[];
+    }else f+=c;
+  }
+  if(f!==''||row.length){row.push(f);if(row.length>1||row[0]!=='') rows.push(row);}
+  const header=rows.shift().map(h=>h.trim());
+  return {header,rows:rows.map(r=>{const o={};header.forEach((h,i)=>o[h]=r[i]??'');return o;})};
+}
+const NUM=/^-?\d+(\.\d+)?([eE][-+]?\d+)?$/;
+function toCSV(header,rows){
+  const cell=(v,h)=>{v=v??'';if(v==='')return '';if(NUM.test(v)&&h!=='PlayerId')return v;return '"'+String(v).replace(/"/g,'""')+'"';};
+  return '﻿'+[header.map(h=>'"'+h.replace(/"/g,'""')+'"').join(','),...rows.map(r=>header.map(h=>cell(r[h],h)).join(','))].join('\r\n')+'\r\n';
+}
+const ID_COLS=['NameASCII','PlayerId','MLBAMID'];
+function keyOf(r){return r.PlayerId?('id:'+r.PlayerId):('n:'+(r.NameASCII||r.Name)+'|'+r.Team);}
+function mergeSeason(b,a,year,addYear){
+  // column order: b stats → a-only stats → id columns
+  const bMain=b.header.filter(h=>!ID_COLS.includes(h));
+  const aOnly=a.header.filter(h=>!b.header.includes(h)&&!ID_COLS.includes(h));
+  const ids=ID_COLS.filter(h=>b.header.includes(h)||a.header.includes(h));
+  const header=[...(addYear?['Year']:[]),...bMain,...aOnly,...ids];
+  const aMap=new Map();a.rows.forEach(r=>aMap.set(keyOf(r),r));
+  const used=new Set(),out=[],onlyB=[],onlyA=[];
+  b.rows.forEach(br=>{
+    const k=keyOf(br),ar=aMap.get(k);
+    if(ar)used.add(k);else onlyB.push(br.Name);
+    const o={};if(addYear)o.Year=year;
+    header.forEach(h=>{if(h==='Year'&&addYear)return;o[h]=(br[h]!==undefined&&br[h]!=='')?br[h]:(ar?.[h]??'');});
+    out.push(o);
+  });
+  a.rows.forEach(ar=>{
+    const k=keyOf(ar);if(used.has(k))return;onlyA.push(ar.Name);
+    const o={};if(addYear)o.Year=year;header.forEach(h=>{if(!(h==='Year'&&addYear))o[h]=ar[h]??'';});
+    out.push(o);
+  });
+  return {header,rows:out,aOnlyCols:aOnly,matched:used.size,onlyB,onlyA};
+}
+function classify(name,parsed){
+  const m=name.match(/(\d{4})\D{0,3}([ab])(?![a-z])/i);
+  let year=m?m[1]:(name.match(/\d{4}/)||[''])[0];
+  let kind=m?m[2].toLowerCase():null;
+  if(!kind){const h=parsed.header;kind=h.includes('wRC+')||h.includes('wOBA')?'a':(h.includes('AB')||h.includes('HR'))?'b':null;}
+  return {year:year||'연도없음',kind};
+}
+if(typeof module!=='undefined'){module.exports={parseCSV,toCSV,mergeSeason,classify};}
+</script>
+<script>
+/* ---------- UI ---------- */
+(function(){
+if(typeof document==='undefined')return;
+const seasons={}; // year -> {a:{name,parsed}, b:{...}}
+const $=id=>document.getElementById(id);
+let downloads=null;
+if(window.claude?.use) window.claude.use('downloads').then(d=>{downloads=d;}).catch(()=>{});
+
+function toast(msg,err){const t=$('toast');t.textContent=msg;t.className='toast'+(err?' err':'');}
+function addFile(name,text){
+  let parsed;try{parsed=parseCSV(text);}catch(e){toast(name+': CSV를 읽지 못했습니다. 파일 형식을 확인해 주세요.',true);return;}
+  const {year,kind}=classify(name,parsed);
+  if(!kind){toast(name+': a인지 b인지 알 수 없습니다. 파일 이름 끝을 _a 또는 _b로 바꿔 주세요.',true);return;}
+  (seasons[year]=seasons[year]||{})[kind]={name,parsed};
+}
+async function handleFiles(list){
+  const files=[...list].filter(f=>/\.csv$/i.test(f.name));
+  if(!files.length){toast('CSV 파일만 올릴 수 있습니다.',true);return;}
+  for(const f of files) addFile(f.name,await f.text());
+  toast(files.length+'개 파일을 불러왔습니다.');render();
+}
+async function save(filename,data){
+  if(downloads){
+    try{await downloads.save({filename,data});toast(filename+' 저장했습니다.');}
+    catch(e){toast(e?.code==='declined'?'저장을 취소했습니다.':'저장하지 못했습니다 ('+(e?.code||'오류')+').',e?.code!=='declined');}
+    return;
+  }
+  const url=URL.createObjectURL(new Blob([data],{type:'text/csv;charset=utf-8'}));
+  const a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),2000);toast(filename+' 다운로드를 시작했습니다.');
+}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function fmt(v){return NUM.test(v)&&v.includes('.')&&v.split('.')[1].length>3?(+v).toFixed(3):v;}
+function render(){
+  const box=$('seasons');box.innerHTML='';
+  const years=Object.keys(seasons).sort();
+  if(!years.length){box.innerHTML='<p class="empty">아직 올린 파일이 없습니다. 위에 연도별 a·b 파일을 놓아 주세요.</p>';return;}
+  const addYear=$('opt-year').checked;
+  years.forEach(y=>{
+    const s=seasons[y],el=document.createElement('article');el.className='season';
+    const slot=(k,label)=>s[k]?`<div class="slot"><div class="tag">${label}</div><div class="fn">${esc(s[k].name)} · ${s[k].parsed.rows.length}명</div></div>`
+      :`<div class="slot missing"><div class="tag">${label}</div><div class="fn">아직 없음</div></div>`;
+    let body='',ready=s.a&&s.b,res=null;
+    if(ready){
+      res=mergeSeason(s.b.parsed,s.a.parsed,y,addYear);
+      const warn=res.onlyB.length+res.onlyA.length;
+      body=`<div class="stats"><span class="pill">${res.rows.length}명 · 열 ${res.header.length}개</span><span class="pill">짝 맞춤 ${res.matched}명</span>${warn?`<span class="pill warn">한쪽에만 있음 ${warn}명</span>`:''}</div>`
+        +(res.onlyB.length?`<p class="note">b에만 있음(세부기록 빈칸): ${res.onlyB.map(esc).join(', ')}</p>`:'')
+        +(res.onlyA.length?`<p class="note">a에만 있음(일반기록 빈칸): ${res.onlyA.map(esc).join(', ')}</p>`:'')
+        +`<div class="table-box"><table><thead><tr>${res.header.map(h=>`<th${res.aOnlyCols.includes(h)?' class="from-a"':''}>${esc(h)}</th>`).join('')}</tr></thead><tbody>`
+        +res.rows.slice(0,15).map(r=>'<tr>'+res.header.map(h=>`<td>${esc(fmt(r[h]))}</td>`).join('')+'</tr>').join('')
+        +`</tbody></table></div><p class="legend">미리보기 ${Math.min(15,res.rows.length)}명 · <b>초록색 열</b>은 a(세부기록)에서 가져온 기록</p>`;
+    }
+    el.innerHTML=`<div class="season-head"><span class="year">${esc(y)}</span><button class="btn" type="button" ${ready?'':'disabled'}>${esc(y)}_total.csv 저장</button></div>
+      <div class="slots">${slot('b','일반기록 b')}${slot('a','세부기록 a')}</div>${body}`;
+    if(ready) el.querySelector('button').onclick=()=>save(y+'_total.csv',toCSV(res.header,res.rows));
+    box.appendChild(el);
+  });
+}
+const drop=$('drop');
+['dragenter','dragover'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.add('over');}));
+['dragleave','drop'].forEach(t=>drop.addEventListener(t,e=>{e.preventDefault();drop.classList.remove('over');}));
+drop.addEventListener('drop',e=>handleFiles(e.dataTransfer.files));
+$('file-input').addEventListener('change',e=>{handleFiles(e.target.files);e.target.value='';});
+$('opt-year').addEventListener('change',render);
+$('clear-btn').addEventListener('click',()=>{Object.keys(seasons).forEach(k=>delete seasons[k]);toast('비웠습니다.');render();});
+// preload the 2026 files you attached
+const sa=$('sample-a').textContent.trim(),sb=$('sample-b').textContent.trim();
+if(sa&&sb&&!sa.startsWith('__')){addFile('2026_a.csv',sa);addFile('2026_b.csv',sb);toast('첨부하신 2026 파일을 미리 불러왔습니다.');}
+render();
+})();
+</script>
+
+</body>
+</html>
