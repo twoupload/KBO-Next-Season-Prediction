@@ -145,8 +145,8 @@ def top_performer_tables_and_figures(all_df, kind, target, out):
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--input-dir',default='evaluation_2026')
-    ap.add_argument('--output-dir',default='thesis_figures')
+    ap.add_argument('--input-dir',default='results/evaluation_2026')
+    ap.add_argument('--output-dir',default='results/thesis_figures')
     args=ap.parse_args()
     indir=Path(args.input_dir);out=Path(args.output_dir)
     if not indir.is_absolute():indir=BASE/indir

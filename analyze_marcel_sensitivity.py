@@ -35,8 +35,8 @@ def age_factor(ages):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     base = Path(__file__).resolve().parent
-    parser.add_argument('--input-dir', type=Path, default=base)
-    parser.add_argument('--output-dir', type=Path, default=base / 'marcel_sensitivity_results')
+    parser.add_argument('--input-dir', type=Path, default=base / 'results' / 'baseline_comparison')
+    parser.add_argument('--output-dir', type=Path, default=base / 'results' / 'marcel_sensitivity_results')
     args = parser.parse_args()
     args.output_dir.mkdir(parents=True, exist_ok=True)
 

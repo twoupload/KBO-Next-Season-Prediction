@@ -35,8 +35,8 @@ def compare_pair(actual, pred_a, pred_b, rng, n_boot):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input-dir', type=Path, default=Path(__file__).resolve().parent)
-    parser.add_argument('--output-dir', type=Path, default=Path('significance_results'))
+    parser.add_argument('--input-dir', type=Path, default=Path(__file__).resolve().parent / 'results' / 'baseline_comparison')
+    parser.add_argument('--output-dir', type=Path, default=Path(__file__).resolve().parent / 'results' / 'significance_results')
     parser.add_argument('--bootstrap', type=int, default=10000)
     parser.add_argument('--seed', type=int, default=20261117)
     args = parser.parse_args()

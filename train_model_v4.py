@@ -30,7 +30,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parent
-OUTPUT = ROOT / 'ml_results_v4'
+OUTPUT = ROOT / 'results' / 'ml_results_v4'
 TRAIN_END, VALID_YEAR, TEST_YEAR = 2023, 2024, 2025
 SEED = 42
 TARGET, BASELINE = 'Target_FIP', 'FIP_lag1'
@@ -52,7 +52,7 @@ GRIDS = {
 def locate(lag):
     name = f'pitcher_lag{lag}_qualified.csv'
     candidates = [ROOT / folder / name for folder in
-                  ('kbo_linked_2015_2025', 'output', 'data', '.')]
+                  ('data/kbo_linked_2015_2025', 'kbo_linked_2015_2025', 'output', 'data', '.')]
     for p in candidates:
         if p.is_file():
             return p

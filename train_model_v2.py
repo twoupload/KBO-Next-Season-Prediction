@@ -22,7 +22,7 @@ from sklearn.preprocessing import StandardScaler
 from xgboost import XGBRegressor
 
 ROOT = Path(__file__).resolve().parent
-RESULT_DIR = ROOT / 'ml_results_v2'
+RESULT_DIR = ROOT / 'results' / 'ml_results_v2'
 TRAIN_END_YEAR = 2023
 VALID_YEAR = 2024
 TEST_YEAR = 2025
@@ -50,7 +50,7 @@ GRIDS = {
 
 def find_input_file(filename):
     locations = [ROOT / folder / filename for folder in
-                 ['kbo_linked_2015_2025', 'output', 'data', '.']]
+                 ['data/kbo_linked_2015_2025', 'kbo_linked_2015_2025', 'output', 'data', '.']]
     for path in locations:
         if path.is_file():
             return path

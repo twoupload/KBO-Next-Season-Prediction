@@ -10,7 +10,7 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 ROOT=Path(__file__).resolve().parent
-OUT=ROOT/'baseline_comparison'
+OUT=ROOT/'results'/'baseline_comparison'
 CONFIG={'batter':('wRC+','PA',100,1200.0), 'pitcher':('FIP','IP_outs',90,1080.0)}
 RECENCY={1:5.,2:4.,3:3.}
 
@@ -80,13 +80,13 @@ def main():
     for kind in CONFIG:
         d=load(kind)
         for year,split in [(2024,'validation'),(2025,'test')]:
-            f=pd.read_csv(ROOT/'ml_results_v2'/f'{kind}_{split}_predictions.csv',dtype={'PlayerId':str})
+            f=pd.read_csv(ROOT/'results'/'ml_results_v2'/f'{kind}_{split}_predictions.csv',dtype={'PlayerId':str})
             p=project(d,kind,f.PlayerId.tolist(),year)
             m=f.merge(p,on='PlayerId',validate='one_to_one')
             assert len(m)==len(f)
             m.to_csv(OUT/f'{kind}_{year}_comparison.csv',index=False,encoding='utf-8-sig')
             metrics.extend(score(m,kind,year))
-        f=pd.read_csv(ROOT/'evaluation_2026'/f'{kind}_2026_qualified_comparison.csv',dtype={'PlayerId':str})
+        f=pd.read_csv(ROOT/'results'/'evaluation_2026'/f'{kind}_2026_qualified_comparison.csv',dtype={'PlayerId':str})
         p=project(d,kind,f.PlayerId.tolist(),2026)
         m=f.merge(p,on='PlayerId',validate='one_to_one')
         assert len(m)==len(f)

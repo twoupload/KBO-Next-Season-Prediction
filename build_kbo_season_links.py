@@ -54,7 +54,7 @@ def link(d,kind,lag):
     return out
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--input-dir',type=Path,default=Path('.'));p.add_argument('--output-dir',type=Path,default=Path('kbo_linked_2015_2025'));args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--input-dir',type=Path,default=Path('.'));p.add_argument('--output-dir',type=Path,default=Path('data/kbo_linked_2015_2025'));args=p.parse_args()
     args.output_dir.mkdir(parents=True,exist_ok=True)
     summary=[]
     for kind in ('batter','pitcher'):

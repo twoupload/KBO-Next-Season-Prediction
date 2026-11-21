@@ -28,7 +28,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / 'predictions_2026'
+OUT = ROOT / 'results' / 'predictions_2026'
 
 # Locked from the v2 2024 validation run; NEVER tune using 2026 outcomes.
 CONFIG = {
@@ -75,7 +75,7 @@ def check_ids(frame, label, year_col):
 
 def run(kind, cfg):
     linked_path = find_file(f'{kind}_lag1_qualified.csv',
-                            ['kbo_linked_2015_2025', 'data', '.'])
+                            ['data/kbo_linked_2015_2025', 'kbo_linked_2015_2025', 'data', '.'])
     source_path = find_file(f'kbo_{kind}_2015_2025_active.csv', ['data', '.'])
     linked = pd.read_csv(linked_path, low_memory=False, dtype={'PlayerId': str})
     source = pd.read_csv(source_path, low_memory=False, dtype={'PlayerId': str})
@@ -97,7 +97,7 @@ def run(kind, cfg):
             raise ValueError(f'미래 정보로 의심되는 입력변수: {c}')
 
     # Check original v2 features and alpha when its info JSON is available.
-    info_path = ROOT / 'ml_results_v2' / f'{kind}_experiment_info.json'
+    info_path = ROOT / 'results' / 'ml_results_v2' / f'{kind}_experiment_info.json'
     if info_path.exists():
         info = json.loads(info_path.read_text(encoding='utf-8-sig'))
         if features != info['features']:

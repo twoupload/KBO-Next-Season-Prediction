@@ -8,15 +8,15 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-plt.rcParams['font.family'] = 'NanumSquare'
+plt.rcParams['font.family'] = 'Malgun Gothic'
 plt.rcParams['axes.unicode_minus'] = False
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 ROOT = Path(__file__).resolve().parent
-OUT = ROOT / 'evaluation_2026'
+OUT = ROOT / 'results' / 'evaluation_2026'
 OUT.mkdir(exist_ok=True)
 
-def locate(filename, subdirs=('', 'predictions_2026', 'data')):
+def locate(filename, subdirs=('', 'results/predictions_2026', 'predictions_2026', 'data')):
     for folder in subdirs:
         path = ROOT / folder / filename
         if path.is_file():

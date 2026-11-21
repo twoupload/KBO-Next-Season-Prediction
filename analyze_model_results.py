@@ -185,10 +185,10 @@ def main():
     parser.add_argument('--output-dir',type=Path)
     args=parser.parse_args()
     root=args.project_dir.resolve()
-    v2dir=args.v2_dir or root/'ml_results_v2'
-    v3dir=args.v3_dir or root/'ml_results_v3'
-    v4dir=args.v4_dir or root/'ml_results_v4'
-    out=args.output_dir or root/'analysis_results'
+    v2dir=args.v2_dir or root/'results'/'ml_results_v2'
+    v3dir=args.v3_dir or root/'results'/'ml_results_v3'
+    v4dir=args.v4_dir or root/'results'/'ml_results_v4'
+    out=args.output_dir or root/'results'/'analysis_results'
     out.mkdir(parents=True,exist_ok=True)
     chart_setup()
     sources={}
